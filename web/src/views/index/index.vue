@@ -1,5 +1,5 @@
 <template>
-<main></main>
+<div>ht2</div>
 </template>
 
 <script>

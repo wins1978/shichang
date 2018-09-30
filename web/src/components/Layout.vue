@@ -1,16 +1,17 @@
 <template>
-<div>
 <div >
-  <el-row>
-    <el-col :span="44" class="sidebar-container">
-      <LeftMenu></LeftMenu>
-      <div class="main-container"></div>
-    </el-col>
+  <el-row >
     <el-col :span="44">
+      <div class="sidebar-container">
+         <LeftMenu></LeftMenu>
+      <div class="main-container"></div>
+      </div>
+     
+    </el-col>
+    <el-col :span="44" class="full_height">
       <router-view/>
     </el-col>
   </el-row>
-</div>
 </div>
 
 </template>

@@ -19,6 +19,16 @@ export default new Router({
           path: 'test',
           name: 'test',
           component: _import('test/index')
+        },
+        {
+          path: 'upload',
+          name: 'upload',
+          component: _import('upload/index')
+        },
+        {
+          path: 'upload/tmp',
+          name: 'tmp',
+          component: _import('upload/tmp')
         }
       ]
     }

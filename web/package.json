@@ -19,6 +19,7 @@
     "sass-loader": "^7.1.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
+    "vue-simple-uploader": "^0.5.4",
     "vue-upload-component": "^2.8.14"
   },
   "devDependencies": {

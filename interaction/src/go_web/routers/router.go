@@ -18,5 +18,6 @@ func init() {
 	
 	beego.Router("/", &controllers.MainController{})
 	beego.AutoRouter(&controllers.LoginController{})
+	beego.AutoRouter(&controllers.UploadController{})
 }
 

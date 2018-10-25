@@ -26,7 +26,8 @@ export default {
     UploadUrl() {
       return 'http://localhost:8080/Upload/UpFile'
     },
-    UploadSuccess() {
+    UploadSuccess(rsp) {
+      console.log(rsp)
     }
   }
 }

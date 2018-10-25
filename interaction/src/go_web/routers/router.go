@@ -6,7 +6,6 @@ import (
 	"github.com/astaxie/beego"
 )
 
-
 func init() {
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
 		AllowAllOrigins:  true,
@@ -17,7 +16,7 @@ func init() {
 	}))
 	
 	beego.Router("/", &controllers.MainController{})
-	beego.AutoRouter(&controllers.LoginController{})
-	beego.AutoRouter(&controllers.UploadController{})
+	beego.Router("/Login",&controllers.LoginController{})
+	//beego.AutoRouter(&controllers.UploadController{})
 }
 

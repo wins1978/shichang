@@ -37,10 +37,27 @@ func (this *UploadController) UpFile() {
 	path := config.UPLOAD_FOLDER +h.Filename
 	this.SaveToFile("file",path)
 
-	var colNames = []string{"str1", "str2", "str3", "str4"}
+	var colMap = initClumnMap()
 
 	excReader := new(excel.ExcelReader)
-	excReader.ReadFormFile(path,colNames)
+	excReader.ReadFormFile(path,colMap)
 	
 	this.Ctx.WriteString( "上传成功" )
 }
+
+//定义表头字段对于关系
+func initClumnMap() map[string]string {
+	var colMap map[string]string
+	colMap = make(map[string]string)
+
+	colMap["磅单编号"] = "NumberFlag"
+	colMap["首次称重日期"] = "Date"
+	colMap["毛重时间"] = "Time"
+	colMap["车号"] = "CarNumber"
+	colMap["货物名称"] = "ShopNumber"
+	colMap["毛重"] = "GrossWeight"
+	colMap["皮重"] = "TareWeight"
+	colMap["收货单位"] = "TakeDept"
+
+	return colMap
+} 

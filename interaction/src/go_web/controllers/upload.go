@@ -19,7 +19,7 @@ import (
 	"github.com/astaxie/beego"
 	"fmt"
 	"go_web/config"
-	"go_web/business/excel"
+	"go_web/business/excel_mgr"
 )
 
 type UploadController struct {
@@ -31,16 +31,21 @@ func (this *UploadController) UpFile() {
 	fmt.Println("calling upload")
 	f,h,_ := this.GetFile("file")
 	fmt.Println(h.Filename)
-	fmt.Println(f)
+	//fmt.Println(f)
 
 	defer f.Close()
 	path := config.UPLOAD_FOLDER +h.Filename
 	this.SaveToFile("file",path)
 
-	var colMap = initClumnMap()
+	xlsImpl := new(excel_mgr.XLSReader)
+	xlsImpl.ExampleOpen(path)
+	xlsImpl.ExampleWorkBook_NumberSheets(path)
+	excel_mgr.ExampleWorkBook_GetSheet(path)
 
-	excReader := new(excel.ExcelReader)
-	excReader.ReadFormFile(path,colMap)
+	//var colMap = initClumnMap()
+
+	//excReader := new(excel.ExcelReader)
+	//excReader.ReadFormFile(path,colMap)
 	
 	this.Ctx.WriteString( "上传成功" )
 }

@@ -1,14 +1,9 @@
 <template>
   <div>
     <h1>upload</h1>
-    <uploader :options="options" class="uploader-example">
-    <uploader-unsupport></uploader-unsupport>
-    <uploader-drop>
-      <p>Drop files here to upload or</p>
-      <uploader-btn :attrs="attrs">select files</uploader-btn>
-    </uploader-drop>
-    <uploader-list></uploader-list>
-  </uploader>
+    <el-upload  :action="UploadUrl()"  :on-success="UploadSuccess">
+      <el-button size="small" type="primary" >点击上传</el-button>
+    </el-upload>
   </div>
 </template>
 
@@ -20,21 +15,19 @@ Vue.use(uploader)
 export default {
   name: 'test',
   data() {
-   return {
-        options: {
-          target: 'http://localhost:8080/Upload/UpFile',
-          testChunks: false
-        },
-        attrs: {
-          accept: 'document/*'
-        }
-      }
+    return {
+    }
   },
   components: {
   },
   created() {
   },
   methods: {
+    UploadUrl() {
+      return 'http://localhost:8080/Upload/UpFile'
+    },
+    UploadSuccess() {
+    }
   }
 }
 </script>

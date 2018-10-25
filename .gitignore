@@ -3,3 +3,5 @@ interaction/pkg
 interaction/src/github.com/
 interaction/src/sourcegraph.com/
 /interaction/src/go_web/node_modules
+/interaction/src/go_web/uploads
+/interaction/src/go_web/go_web.exe

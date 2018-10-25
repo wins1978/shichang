@@ -10,7 +10,8 @@ type ExcelReader struct {
 }
 
 //https://blog.csdn.net/zdyueguanyun/article/details/64588339
-func (this *ExcelReader)ReadFormFile(fileName string) (string, error) {
+//colMapping ：column name
+func (this *ExcelReader)ReadFormFile(fileName string, colMapping []string) (string, error) {
 	xlsx, err := excelize.OpenFile(fileName)
 
 	if (err != nil) {

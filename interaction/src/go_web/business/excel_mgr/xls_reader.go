@@ -2,18 +2,40 @@ package excel_mgr
 
 import "github.com/extrame/xls"
 import "fmt"
-
-type XLSReader struct {
-}
+import "go_web/models"
 
 //https://github.com/extrame/xls/blob/master/example_test.go
-func (this *XLSReader)ExampleOpen(filePath string) {
-	if xlFile, err := xls.Open(filePath, "utf-8"); err == nil {
-		fmt.Println(xlFile.Author)
-	}
+type XlsReader struct {
+	xlFile *xls.WorkBook
 }
 
-func (this *XLSReader)ExampleWorkBook_NumberSheets(filePath string) {
+//Init
+func (this *XlsReader)InitWorkBook(filePath string) {
+	//load exc to instance
+	if xlFile, err := xls.Open(filePath, "utf-8"); err == nil {
+		this.xlFile = xlFile
+	}
+	//load style config
+}
+
+func (this *XlsReader)ReadData(colMap map[string]string) []models.InputInfo {
+	err := this.validate()
+	if (err != nil) {
+		return nil
+	}
+
+	if sheet1 := this.xlFile.GetSheet(0); sheet1 != nil {
+	}
+	
+	return nil
+}
+
+func (this *XlsReader)validate() error {
+	return nil
+}
+
+
+func (this *XlsReader)ExampleWorkBook_NumberSheets(filePath string) {
 	if xlFile, err := xls.Open(filePath, "utf-8"); err == nil {
 		for i := 0; i < xlFile.NumSheets(); i++ {
 			sheet := xlFile.GetSheet(i)

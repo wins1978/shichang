@@ -37,7 +37,7 @@ func (this *UploadController) UpFile() {
 	path := config.UPLOAD_FOLDER +h.Filename
 	this.SaveToFile("file",path)
 
-	xlsImpl := new(excel_mgr.XLSReader)
+	xlsImpl := new(excel_mgr.XlsReader)
 	xlsImpl.ExampleOpen(path)
 	xlsImpl.ExampleWorkBook_NumberSheets(path)
 	excel_mgr.ExampleWorkBook_GetSheet(path)

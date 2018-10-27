@@ -17,7 +17,6 @@ EXCEL======
 
 import (
 	"github.com/astaxie/beego"
-	"fmt"
 	"go_web/config"
 	"go_web/business/excel_mgr"
 )
@@ -28,26 +27,19 @@ type UploadController struct {
 //https://www.cnblogs.com/goloving/p/8967865.html 上传文件示例
 //http://localhost:8080/Upload/UpFile
 func (this *UploadController) UpFile() {
-	fmt.Println("calling upload")
 	f,h,_ := this.GetFile("file")
-	fmt.Println(h.Filename)
-	//fmt.Println(f)
-
 	defer f.Close()
+
 	path := config.UPLOAD_FOLDER +h.Filename
 	this.SaveToFile("file",path)
 
+	var colMap = initClumnMap()
+
 	xlsImpl := new(excel_mgr.XlsReader)
-	xlsImpl.ExampleOpen(path)
-	xlsImpl.ExampleWorkBook_NumberSheets(path)
-	excel_mgr.ExampleWorkBook_GetSheet(path)
-
-	//var colMap = initClumnMap()
-
-	//excReader := new(excel.ExcelReader)
-	//excReader.ReadFormFile(path,colMap)
+	xlsImpl.InitWorkBook(path)
+	datas := xlsImpl.ReadData(colMap)
 	
-	this.Ctx.WriteString( "上传成功" )
+	this.Ctx.Output.JSON(datas,false,false)
 }
 
 //定义表头字段对于关系

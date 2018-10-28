@@ -82,7 +82,7 @@
   </header>
   <footer>
     <div class="author">
-      Official website:
+      Official website1:
       <a href="http://{{.Website}}">{{.Website}}</a> /
       Contact me:
       <a class="email" href="mailto:{{.Email}}">{{.Email}}</a>

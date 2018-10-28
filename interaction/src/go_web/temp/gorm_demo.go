@@ -12,7 +12,7 @@ _ "github.com/jinzhu/gorm/dialects/mysql"
 //https://blog.csdn.net/feiwutudou/article/details/82782470
 type Test_tb struct {
 	ID   int `gorm:"primary_key"` //指定主键并自增
-	Address      string
+	ADDRESS      string `gorm:"type:varchar(45)"`
 	Phone       string
 }
 
@@ -40,14 +40,16 @@ func GetFirstRow() {
 	//common.Db.SetLogger(log.)
 	common.Db.SetLogger(log.New(os.Stdout, "\r\n", 0))
 
-	qhuser:=common.Db.First(&tb)
-	if err:=qhuser.Error; err!=nil{
+	q:=common.Db.First(&tb)
+	if err:=q.Error; err!=nil{
         fmt.Print(err)
 	}
+
+	row := q.Row()
 	
 	//common.Db.Debug().Model(&tb).Update("ADDRESS", "NNNN")
 	defer common.Db.Close()
 
-	fmt.Print(tb.Phone)
+	fmt.Print(row)
 	
 }

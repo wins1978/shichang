@@ -39,7 +39,9 @@ func (this *UploadController) UpFile() {
 	xlsImpl.InitWorkBook(path)
 	datas := xlsImpl.ReadData(colMap)
 	
-	this.Ctx.Output.JSON(datas,false,false)
+	this.Data["datas"] = datas
+	this.Data["msg"] = ""
+	this.Ctx.Output.JSON(this.Data["datas"],false,false)
 }
 
 //定义表头字段对于关系

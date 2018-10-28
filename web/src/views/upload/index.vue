@@ -1,9 +1,39 @@
 <template>
-  <div>
-    <h1>upload</h1>
-    <el-upload  :action="UploadUrl()"  :on-success="UploadSuccess">
-      <el-button size="small" type="primary" >点击上传</el-button>
-    </el-upload>
+  <div class="page-content-container">
+    <el-form  label-width="100px">
+      <el-row>
+        <el-col :span="24">
+          <h3>选择上传文件：</h3>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24" type="flex">
+            <el-upload  :action="UploadUrl()"  :on-success="UploadSuccess">
+              <el-button size="small" type="primary" >点击上传</el-button>
+            </el-upload>
+        </el-col>
+        </el-row>
+
+      <el-row>
+        <el-col :span="24">
+        
+       <el-table :key='tableKey' :data="list" border fit highlight-current-row
+        width= "100%" max-height= "580" >
+        <el-table-column align="center" :label="'磅单编号'" width="200"   prop="NumberFlag">
+            <template slot-scope="scope">
+            <span>{{scope.row.NumberFlag}}</span>
+            </template>
+        </el-table-column>
+        <el-table-column align="center" :label="'收货单位'" width="200"   prop="TakeDept">
+            <template slot-scope="scope">
+            <span>{{scope.row.TakeDept}}</span>
+            </template>
+        </el-table-column>
+     </el-table>     
+     </el-col>
+    </el-row>
+
+    </el-form>
   </div>
 </template>
 
@@ -16,6 +46,8 @@ export default {
   name: 'test',
   data() {
     return {
+      tableKey: 1,
+      list: null
     }
   },
   components: {
@@ -27,7 +59,7 @@ export default {
       return 'http://localhost:8080/Upload/UpFile'
     },
     UploadSuccess(rsp) {
-      console.log(rsp)
+      this.list = rsp
     }
   }
 }

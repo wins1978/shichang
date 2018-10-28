@@ -3,17 +3,19 @@ package temp
 import (
 "go_web/common"
  "fmt"
-//"github.com/jinzhu/gorm"
+"github.com/jinzhu/gorm"
 _ "github.com/jinzhu/gorm/dialects/mysql"
 "log"
 "os"
 )
 
+//http://gorm.io/docs/query.html
 //https://blog.csdn.net/feiwutudou/article/details/82782470
 type Test_tb struct {
-	ID   int `gorm:"primary_key"` //指定主键并自增
-	ADDRESS      string `gorm:"type:varchar(45)"`
-	Phone       string
+	gorm.ModelStruct
+	id   int `gorm:"primary_key;Column:ID"` //指定主键并自增
+	ADDRESS      string `gorm:"Column:ADDRESS"`
+	phone       string `gorm:"Column:PHONE"`
 }
 
 func (Test_tb) TableName() string {
@@ -40,16 +42,39 @@ func GetFirstRow() {
 	//common.Db.SetLogger(log.)
 	common.Db.SetLogger(log.New(os.Stdout, "\r\n", 0))
 
+
+
 	q:=common.Db.First(&tb)
 	if err:=q.Error; err!=nil{
         fmt.Print(err)
 	}
 
-	row := q.Row()
+	//var addr string
+	rows,_ := common.Db.Model(&Test_tb{}).Where("ID = ?", 1).Rows() // (*sql.Row)
+	//rr := common.Db..Where("ID = ?", 1).Select("ADDRESS").Row() // (*sql.Row)
+	defer rows.Close()
+	
+	fmt.Println("==============")
+	for rows.Next() {
+		//var address string 
+		//var phone string
+		var rr Test_tb
+		//common.Db.ScanRows(rows,user)
+		//rows.Scan(&address,&phone)
+		common.Db.ScanRows(rows, &rr)
+		fmt.Println(rr.phone)
+		//fmt.Println(address, " ", phone)
+	}
+
+	//convert.go
+
+	fmt.Println("==============")
+	
 	
 	//common.Db.Debug().Model(&tb).Update("ADDRESS", "NNNN")
 	defer common.Db.Close()
 
-	fmt.Print(row)
+	
+	
 	
 }

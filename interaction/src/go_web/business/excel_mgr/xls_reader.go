@@ -1,6 +1,7 @@
 package excel_mgr
 
 import (
+	"strconv"
 	"reflect"
 	"github.com/extrame/xls"
 	"go_web/models"
@@ -48,20 +49,21 @@ func (this *XlsReader)ReadData(colMap map[string]string) []models.InputInfo {
 
 	for i := 1; i<= int(sheet1.MaxRow); i++ {
 		row := sheet1.Row(i)
-		info := fillDataByRow(row,colIndexMap)
+		info := fillDataByRow(row, colIndexMap, i)
 		infoList = append(infoList,info)
 	}	
 	
 	return infoList
 }
 
-func fillDataByRow(row *xls.Row, colMap map[string]int) models.InputInfo {
+func fillDataByRow(row *xls.Row, colMap map[string]int, index int) models.InputInfo {
 	var info models.InputInfo
 	pt := reflect.ValueOf(&info).Elem()
 	for colN,colIdx := range colMap {
 		val := row.Col(colIdx)
 		pt.FieldByName(colN).SetString(val)
 	}
+	pt.FieldByName("RowIndex").SetString(strconv.Itoa(index))
 
 	return info
 }

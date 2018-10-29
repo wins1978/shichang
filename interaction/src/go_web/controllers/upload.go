@@ -49,6 +49,8 @@ func initClumnMap() map[string]string {
 	var colMap map[string]string
 	colMap = make(map[string]string)
 
+	
+	colMap["首次称重操作员"] = "Date"
 	colMap["磅单编号"] = "NumberFlag"
 	colMap["首次称重日期"] = "Date"
 	colMap["毛重时间"] = "Time"
@@ -56,7 +58,8 @@ func initClumnMap() map[string]string {
 	colMap["货物名称"] = "ShopNumber"
 	colMap["毛重"] = "GrossWeight"
 	colMap["皮重"] = "TareWeight"
+	colMap["净重"] = "NetWeight"
 	colMap["收货单位"] = "TakeDept"
-
+	colMap["发货单位"] = "SendOutDept"
 	return colMap
 } 

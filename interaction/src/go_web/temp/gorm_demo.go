@@ -11,14 +11,14 @@ _ "github.com/jinzhu/gorm/dialects/mysql"
 
 //http://gorm.io/docs/query.html
 //https://blog.csdn.net/feiwutudou/article/details/82782470
-type Test_tb struct {
+type Test_tbStruct struct {
 	gorm.ModelStruct
 	id   int `gorm:"primary_key;Column:ID"` //指定主键并自增
 	ADDRESS      string `gorm:"Column:ADDRESS"`
 	phone       string `gorm:"Column:PHONE"`
 }
 
-func (Test_tb) TableName() string {
+func (Test_tbStruct) TableName() string {
     return "Test_tb"
 }
 
@@ -37,7 +37,7 @@ func GetFirstRow() {
 	//p1 := Test_tb{ID : 0, Address : "new addr", Phone : "100220033"}
 	//common.Db.Create(&p1)
 
-	var tb Test_tb
+	var tb Test_tbStruct
 	common.Db.LogMode(true)
 	//common.Db.SetLogger(log.)
 	common.Db.SetLogger(log.New(os.Stdout, "\r\n", 0))
@@ -50,7 +50,7 @@ func GetFirstRow() {
 	}
 
 	//var addr string
-	rows,_ := common.Db.Model(&Test_tb{}).Where("ID = ?", 1).Rows() // (*sql.Row)
+	rows,_ := common.Db.Model(&Test_tbStruct{}).Where("ID = ?", 1).Rows() // (*sql.Row)
 	//rr := common.Db..Where("ID = ?", 1).Select("ADDRESS").Row() // (*sql.Row)
 	defer rows.Close()
 	
@@ -58,7 +58,7 @@ func GetFirstRow() {
 	for rows.Next() {
 		//var address string 
 		//var phone string
-		var rr Test_tb
+		var rr Test_tbStruct
 		//common.Db.ScanRows(rows,user)
 		//rows.Scan(&address,&phone)
 		common.Db.ScanRows(rows, &rr)

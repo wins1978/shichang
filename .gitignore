@@ -6,3 +6,4 @@ interaction/src/sourcegraph.com/
 /interaction/src/go_web/uploads
 /interaction/src/go_web/go_web.exe
 /interaction/src/go_web/config/db_setting.go
+/interaction/src/go_test/appmain.exe

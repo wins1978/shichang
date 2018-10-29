@@ -28,5 +28,18 @@ func Fmtdemo() {
 	//fmt.Println(connStr)
 	engine, _ := xorm.NewEngine("mysql", connStr)
 	
-	engine.Sync2(new(User))
+	var u User
+	u.Age=20
+	u.Id=1
+	u.Name="wins"
+	u.Passwd="Cosfcoco00"
+	u.Salt="coco"
+
+	aff,_ :=engine.Insert(&u)
+	fmt.Println(aff)
+
+	var uu User
+	engine.Where("name = ?", "wins").Get(&uu)
+	fmt.Println(uu)
+	//engine.Sync2(new(User))
 }

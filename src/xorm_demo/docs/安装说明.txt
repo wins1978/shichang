@@ -1,7 +1,7 @@
 ﻿插件安装
 https://blog.csdn.net/yo_oygo/article/details/79065966
 
-cd H:\\MyProject\\shichang\\src\\golang.org\\x
+cd H:\\MyProject\\src\\golang.org\\x
 
 git clone https://github.com/golang/tools.git tools
 git clone https://github.com/golang/lint.git lint

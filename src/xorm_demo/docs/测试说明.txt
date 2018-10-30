@@ -1,2 +1,4 @@
-测试单个包
->go test xorm_demo/testddl
+测试单个包(-v参数打印日志)
+>go test -v xorm_demo/ddl
+初始化脚本用
+TestMain()方法

@@ -2,9 +2,11 @@ package conn
 
 import (
 	"fmt"
+	"os"
 	"xorm_demo/config"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-xorm/core"
 	"github.com/go-xorm/xorm"
 )
 
@@ -23,4 +25,17 @@ func InitDB() {
 		DB.Close()
 		fmt.Println("数据库连接失败")
 	}
+
+	//设置打印日志为打印所有SQL
+	DB.SetLogLevel(core.LOG_DEBUG)
+	DB.ShowSQL(true)
+
+	//SQL写日志
+	// TODO --按日期文件写入
+	f, err := os.OpenFile(config.DB_LOG_PATH, os.O_APPEND, 0644)
+	if err != nil {
+		println(err.Error())
+		return
+	}
+	DB.SetLogger(xorm.NewSimpleLogger(f))
 }

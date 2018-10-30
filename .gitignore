@@ -11,3 +11,4 @@ interaction/src/sourcegraph.com/
 /github.com
 /src/domo/xorm_demo/src/config/db_conf.go
 /src/xorm_demo/src/config/db_conf.go
+/src/interaction/config/db_setting.go

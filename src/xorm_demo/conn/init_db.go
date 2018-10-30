@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 	"xorm_demo/config"
-
-	_ "github.com/go-sql-driver/mysql"
+ 
+	_ "github.com/go-sql-driver/mysql" 
 	"github.com/go-xorm/core"
-	"github.com/go-xorm/xorm"
+	"github.com/go-xorm/xorm" 
 )
 
 var (

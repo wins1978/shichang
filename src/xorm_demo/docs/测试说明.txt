@@ -1,4 +1,8 @@
 测试单个包(-v参数打印日志)
+创建表测试
 >go test -v xorm_demo/ddl
+插入数据测试
+>go test -v xorm_demo/dml
 初始化脚本用
 TestMain()方法
+

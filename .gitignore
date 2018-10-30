@@ -15,3 +15,5 @@ interaction/src/sourcegraph.com/
 /src/xorm_demo/config/db_conf.go
 /pkg
 github.com
+/src/xorm_demo/config/db_settings.go
+/src/golang.org

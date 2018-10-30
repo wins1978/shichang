@@ -9,3 +9,5 @@ interaction/src/sourcegraph.com/
 /interaction/src/go_test/appmain.exe
 /domo/xorm_demo/src/config/db_conf.go
 /github.com
+/src/domo/xorm_demo/src/config/db_conf.go
+/src/xorm_demo/src/config/db_conf.go

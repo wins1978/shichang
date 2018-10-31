@@ -17,6 +17,9 @@ func TestCreateTable(t *testing.T) {
 		t.Error("DB 连接未初始化")
 	}
 
+	//
+	return
+
 	user := new(models.User)
 	dept := new(models.Department)
 

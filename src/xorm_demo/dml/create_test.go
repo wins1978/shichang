@@ -15,12 +15,8 @@ func TestMain(m *testing.M) {
 // 插入一行数据
 func TestInsertOne(t *testing.T) {
 	var user = new(models.User)
-	user.ID = 0
-	user.Address = "深圳福田中心"
-	user.Age = 10
+	user.Id = 1
 	user.Name = "ccla"
-	user.Passwd = "pwd2018"
-	user.Phone = "18012345670"
 
 	id, err := conn.DB.InsertOne(user)
 	if err != nil {
@@ -31,6 +27,20 @@ func TestInsertOne(t *testing.T) {
 
 // 插入多行数据
 func TestInsertMany(t *testing.T) {
-	var dept = new(models.Department)
 
+	depts := []*models.Department{}
+
+	var d1 = new(models.Department)
+	d1.Id = 1
+
+	d1.DeptName = "企业IT"
+
+	var d2 = new(models.Department)
+	d2.Id = 2
+	d2.DeptName = "游戏"
+
+	depts = append(depts, d1)
+	depts = append(depts, d2)
+
+	conn.DB.Insert(depts)
 }

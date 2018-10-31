@@ -9,18 +9,28 @@ import (
 func TestMain(m *testing.M) {
 	conn.InitDB()
 	m.Run()
+	conn.DB.Close()
 }
 
-//插入一行数据
+// 插入一行数据
 func TestInsertOne(t *testing.T) {
 	var user = new(models.User)
-	user.Id = 3
+	user.ID = 0
 	user.Address = "深圳福田中心"
 	user.Age = 10
 	user.Name = "ccla"
 	user.Passwd = "pwd2018"
-	user.Phone = "18012345678"
+	user.Phone = "18012345670"
 
-	conn.DB.InsertOne(user)
+	id, err := conn.DB.InsertOne(user)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Logf("ID is:%d", id)
+}
+
+// 插入多行数据
+func TestInsertMany(t *testing.T) {
+	var dept = new(models.Department)
 
 }

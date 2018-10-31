@@ -18,3 +18,4 @@ github.com
 /src/xorm_demo/config/db_settings.go
 /src/golang.org
 /src/gorm_demo/config/db_settings.go
+/bin

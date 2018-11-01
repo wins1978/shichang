@@ -7,16 +7,11 @@ GO_TESTDB?charset=utf8&parseTime=true
 ===================================
 重要
 ===================================
-不要采用全局DB的方式去执行选择并后续更新操作，这种方式当第一步错误时，
-后续的更新将更新所有记录！！！
-conn.DB.Where("id > ", 3).First(&users) // -- 这里"id > "少了?号，会错误，但是
-//下面这一条依赖&users条件的，会因为条件失败更新所有行
-conn.DB.Model(&users).Select("null_age", "address").UpdateColumn(values)
-===================================
-正确的方式
-query := conn.DB.Where("id > ", 3).First(&users)
-//即使注释掉异常处理，后续的语句也不会执行
-//if query.Error != nil {
-//		t.Error(query.Error)
-//}
-query.Select("null_age", "address").UpdateColumn(values)
+func (db *DB) execDC(ctx context.Context, dc *driverConn, release func(error), query string, args []interface{}) (res Result, err error) {
+	q1 := strings.ToLower(query)
+
+	if !strings.Contains(q1, "where") && strings.Contains(q1, "update") {
+		fmt.Println("--------------", query)
+		defer db.Close()
+		panic("no where clause")
+	}

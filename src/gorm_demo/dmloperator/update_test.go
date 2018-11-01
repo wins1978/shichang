@@ -66,21 +66,25 @@ func TestUpdateColumn(t *testing.T) {
 	var users []model.User
 
 	age := sql.NullInt64{Int64: 11, Valid: true}
-	addr := "深圳南山--up00"
+	addr := "深圳南山--aaaa1"
 
 	values := map[string]interface{}{"address": addr, "null_age": age}
 
-	//更新特定的字段
-	query := conn.DB.Where("id > ", 3).First(&users)
-	//即使注释掉异常处理，后续的语句也不会执行
-	if query.Error != nil {
-		t.Error(query.Error)
-	}
-	query.Select("null_age", "address").UpdateColumn(values)
+	/*
+		//更新特定的字段
+		query := conn.DB.Where("id > ?", 3).First(&users)
+		//即使注释掉异常处理，后续的语句也不会执行
+		if query.Error != nil {
+			t.Error(query.Error)
+			panic("error........")
+		}
+		query.Select("null_age", "address").UpdateColumn(values)
+	*/
 
 	//***********************
 	// 不要采用下面的方式更新数据，当第一条语句有错误时，将更新所有数据（除非判断错误并抛出异常）
 	//***********************
-	//conn.DB.Where("id > ", 3).First(&users)
-	//conn.DB.Model(&users).Select("null_age", "address").UpdateColumn(values)
+	//var user model.User
+	conn.DB.Where("id > ", 3).Find(&users)
+	conn.DB.Model(&users).Select("null_age", "address").UpdateColumns(values)
 }

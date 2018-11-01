@@ -15,3 +15,7 @@ type Department struct {
 	Tel       string `gorm:"type:varchar(100);not null"`
 	Address   string `gorm:"size:255"` // 给address字段创建名为addr的索引
 }
+
+func (Department) TableName() string {
+	return "department"
+}

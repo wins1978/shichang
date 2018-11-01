@@ -72,5 +72,75 @@ func TestQueryByPrimaryKeys(t *testing.T) {
 	for _, user := range users {
 		fmt.Println(user)
 	}
+}
 
+//子查询
+func TestSubQuery(t *testing.T) {
+	//SELECT * FROM go_testdb.user u where u.name='wins1' and
+	//dept_id in (select id from go_testdb.department t where t.dept_name like '%企业%')
+	subQ := conn.DB.Table("department").Select("id").Where("dept_name like ?", "%企业%").QueryExpr()
+	fmt.Println(subQ)
+
+	var users []model.User
+	conn.DB.Where("name = ? and dept_id in (?)", "wins1", subQ).Find(&users)
+
+	for _, user := range users {
+		fmt.Println(user)
+	}
+}
+
+//查询视图
+func TestQueryView(t *testing.T) {
+	var users_v []model.UserInfoView
+
+	conn.DB.Where("dept_name like ?", "%企业%").Find(&users_v)
+
+	for _, user := range users_v {
+		fmt.Println(user)
+	}
+}
+
+//复杂组合查询
+func TestComplexQuery(t *testing.T) {
+	var users []model.User
+	//SELECT * FROM `user`  WHERE (name like ? and null_age < ?) OR (id = ?)
+	//ORDER BY id desc[%wins% 40 5]
+	conn.DB.Where("name like ? and null_age < ?", "%wins%", 40).
+		Or("id = ?", 5).
+		Order("id desc").
+		Find(&users)
+
+	for _, user := range users {
+		fmt.Println(user.ID)
+	}
+}
+
+//Join查询
+func TestJoinQuery(t *testing.T) {
+	var users []model.User
+	//SELECT user.id,user.name,d.dept_name FROM `user`
+	//join department d on user.dept_id = d.id WHERE (user.name like ?)[%wins%]
+	conn.DB.Select("user.id,user.name,d.dept_name").
+		Joins("join department d on user.dept_id = d.id").
+		Where("user.name like ?", "%wins%").
+		Find(&users)
+
+	for _, user := range users {
+		fmt.Println(user.ID, user.Name, user.DeptName)
+	}
+}
+
+//转换查询结果到Dto类中
+func TestScanDto(t *testing.T) {
+	var dtos []model.UserDto
+	//SELECT user.id,user.name,d.dept_name FROM `user`
+	//left join department d on user.dept_id = d.id WHERE (user.name like ?)[%wins%]
+	conn.DB.Table("user").Select("user.id,user.name,d.dept_name").
+		Joins("left join department d on user.dept_id = d.id").
+		Where("user.name like ?", "%wins%").
+		Scan(&dtos)
+
+	for _, dto := range dtos {
+		fmt.Println(dto)
+	}
 }

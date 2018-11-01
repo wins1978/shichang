@@ -12,20 +12,19 @@ import (
 //选择一行，返回实体类
 func TestSelectRow(t *testing.T) {
 	var user model.User
-	user.Role = "r1"
 	conn.DB.Where(&user).Find(&user)
 
-	t.Log("----email:" + user.Address)
+	t.Log(user.Birthday)
 }
 
 //查找多行，返回实体数组
 func TestSelectRows(t *testing.T) {
 	var users []model.User
-	conn.DB.Where("address = ?", "addr1").Find(&users)
+	conn.DB.Where("address like ?", "深圳%").Find(&users)
 
 	fmt.Println("---------------------Rows:")
 	for _, user := range users {
-		fmt.Println(user.Address)
+		fmt.Println(user)
 	}
 }
 

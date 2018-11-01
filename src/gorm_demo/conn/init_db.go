@@ -11,9 +11,9 @@ import (
 
 var DB *gorm.DB
 
-// InitDB 初始化DB
+// InitDB 初始化DB (parseTime必须设置为true)
 func InitDB() {
-	var source = fmt.Sprintf("%s:%s@tcp(%s:3306)/GO_TESTDB?charset=utf8", config.DB_USER, config.DB_PASSWORD, config.DB_HOST)
+	var source = fmt.Sprintf("%s:%s@tcp(%s:3306)/GO_TESTDB?charset=utf8&parseTime=true", config.DB_USER, config.DB_PASSWORD, config.DB_HOST)
 	var err error
 	DB, err = gorm.Open("mysql", source)
 	if err != nil {

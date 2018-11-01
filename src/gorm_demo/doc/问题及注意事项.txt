@@ -1,0 +1,5 @@
+测试时打印输出、已经防止缓存（导致插入数据无效）
+"go.testFlags": ["-v","-count=1"]
+
+DB连接字符串需要添加parseTime，否则无法转换Datetime值
+GO_TESTDB?charset=utf8&parseTime=true

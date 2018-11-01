@@ -17,4 +17,7 @@ func TestMain(m *testing.M) {
 func TestCreateTable(t *testing.T) {
 	var user model.User
 	conn.DB.CreateTable(&user)
+
+	var dept model.Department
+	conn.DB.CreateTable(&dept)
 }

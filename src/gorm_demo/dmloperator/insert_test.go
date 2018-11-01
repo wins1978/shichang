@@ -24,7 +24,7 @@ func TestInsertOne(t *testing.T) {
 	//birth = time.Now()
 
 	var user model.User
-	user.Address = "addr"
+	user.Address = "addr 深圳"
 	//user.Role = "r1"
 	//user.Age = nAge
 	//user.Birthday = &birth

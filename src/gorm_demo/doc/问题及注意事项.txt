@@ -16,3 +16,13 @@ func (db *DB) execDC(ctx context.Context, dc *driverConn, release func(error), q
 		defer db.Close()
 		panic("no where clause")
 	}
+
+全局Db.close()何时调用？
+conn.DB 你是全局对象,    会各个线程干扰
+实现像using(db=new CacheDataAccess())这样的功能
+
+
+========================
+TODO LIST
+1、回调函数callback
+2、事务

@@ -9,8 +9,9 @@ GO_TESTDB?charset=utf8&parseTime=true
 ===================================
 func (db *DB) execDC(ctx context.Context, dc *driverConn, release func(error), query string, args []interface{}) (res Result, err error) {
 	q1 := strings.ToLower(query)
-
-	if !strings.Contains(q1, "where") && strings.Contains(q1, "update") {
+	//下面的语句有问题，如果column字段包含update_at,而语句是insert会误判
+	if !strings.Contains(q1, "where") && 
+	(strings.Contains(q1, "update") || (strings.Contains(q1, "delete")) {
 		fmt.Println("--------------", query)
 		defer db.Close()
 		panic("no where clause")

@@ -20,7 +20,11 @@ func TestSelectRow(t *testing.T) {
 //查找多行，返回实体数组
 func TestSelectRows(t *testing.T) {
 	var users []model.User
-	conn.DB.Where("address like ?", "深圳%").Find(&users)
+	q := conn.DB.Where("address like ?", "深圳%").Find(&users)
+
+	if q.Error != nil {
+		t.Error(q.Error)
+	}
 
 	fmt.Println("---------------------Rows:")
 	for _, user := range users {
@@ -36,7 +40,11 @@ func TestQueryInCondition(t *testing.T) {
 	qry = append(qry, "wins2")
 	qry = append(qry, "wins3")
 
-	conn.DB.Where("name in (?)", qry).Find(&users)
+	q := conn.DB.Where("name in (?)", qry).Find(&users)
+
+	if q.Error != nil {
+		t.Error(q.Error)
+	}
 
 	for _, user := range users {
 		fmt.Println(user.Name)
@@ -47,7 +55,11 @@ func TestQueryInCondition(t *testing.T) {
 func TestQueryOrCondition(t *testing.T) {
 	var users []model.User
 
-	conn.DB.Where("name = ?", "wins1").Or("name =?", "wins2").Find(&users)
+	q := conn.DB.Where("name = ?", "wins1").Or("name =?", "wins2").Find(&users)
+
+	if q.Error != nil {
+		t.Error(q.Error)
+	}
 
 	for _, user := range users {
 		fmt.Println(user.Name)
@@ -67,7 +79,11 @@ func TestQueryByPrimaryKeys(t *testing.T) {
 	var users []model.User
 	ids := []int64{1, 2, 3}
 
-	conn.DB.Where(ids).Find(&users)
+	q := conn.DB.Where(ids).Find(&users)
+
+	if q.Error != nil {
+		t.Error(q.Error)
+	}
 
 	for _, user := range users {
 		fmt.Println(user)
@@ -78,11 +94,14 @@ func TestQueryByPrimaryKeys(t *testing.T) {
 func TestSubQuery(t *testing.T) {
 	//SELECT * FROM go_testdb.user u where u.name='wins1' and
 	//dept_id in (select id from go_testdb.department t where t.dept_name like '%企业%')
-	subQ := conn.DB.Table("department").Select("id").Where("dept_name like ?", "%企业%").QueryExpr()
+	subQ := conn.DB.Table("department").Select("id").Where("dept_name like ", "%企业%").QueryExpr()
 	fmt.Println(subQ)
 
 	var users []model.User
-	conn.DB.Where("name = ? and dept_id in (?)", "wins1", subQ).Find(&users)
+	q := conn.DB.Where("name = ? and dept_id in (?)", "wins1", subQ).Find(&users)
+	if q.Error != nil {
+		t.Error(q.Error)
+	}
 
 	for _, user := range users {
 		fmt.Println(user)
@@ -93,7 +112,11 @@ func TestSubQuery(t *testing.T) {
 func TestQueryView(t *testing.T) {
 	var users_v []model.UserInfoView
 
-	conn.DB.Where("dept_name like ?", "%企业%").Find(&users_v)
+	q := conn.DB.Where("dept_name like ?", "%企业%").Find(&users_v)
+
+	if q.Error != nil {
+		t.Error(q.Error)
+	}
 
 	for _, user := range users_v {
 		fmt.Println(user)
@@ -105,10 +128,14 @@ func TestComplexQuery(t *testing.T) {
 	var users []model.User
 	//SELECT * FROM `user`  WHERE (name like ? and null_age < ?) OR (id = ?)
 	//ORDER BY id desc[%wins% 40 5]
-	conn.DB.Where("name like ? and null_age < ?", "%wins%", 40).
+	q := conn.DB.Where("name like ? and null_age < ?", "%wins%", 40).
 		Or("id = ?", 5).
 		Order("id desc").
 		Find(&users)
+
+	if q.Error != nil {
+		t.Error(q.Error)
+	}
 
 	for _, user := range users {
 		fmt.Println(user.ID)

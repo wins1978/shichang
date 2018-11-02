@@ -15,11 +15,12 @@ type User struct {
 	Name       string
 	NullAge    sql.NullInt64
 	Email      string `gorm:"type:varchar(100);not null"`
-	NullString string `gorm:"size:255"`   // 设置字段大小为255
-	Address    string `gorm:"index:addr"` // 给address字段创建名为addr的索引
-	DeptName   string `gorm:"-"`          // 忽略本字段(关联部门表用于查询显示)
+	NullString string `gorm:"size:255"` // 设置字段大小为255
+	Address    string
+	DeptName   string `gorm:"-"` // 忽略本字段(关联部门表用于查询显示)
 	Birthday   mysql.NullTime
 	DeptId     sql.NullInt64
+	GoId       string
 }
 
 func (User) TableName() string {

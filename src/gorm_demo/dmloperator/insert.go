@@ -1,19 +1,22 @@
-package dmloperator_test
+package dmloperator
 
 import (
 	"database/sql"
+	"fmt"
 	"gorm_demo/conn"
 	"gorm_demo/model"
-	"testing"
+	"strconv"
 	"time"
 
 	"github.com/go-sql-driver/mysql"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-func TestInsertOne(t *testing.T) {
+func InsertOne(idx int) {
+	goid := strconv.Itoa(idx)
+	fmt.Println(goid)
+
 	var user model.User
-	user.Address = "深圳南山"
+	user.Address = "aaa"
 	user.CreatedAt = time.Now()
 	user.DeptId = sql.NullInt64{Int64: 0, Valid: false}
 	user.Email = ""
@@ -21,25 +24,15 @@ func TestInsertOne(t *testing.T) {
 	user.NullAge = sql.NullInt64{Int64: 21, Valid: true}
 	user.NullString = ""
 	user.Birthday = mysql.NullTime{Time: time.Now(), Valid: false}
+	user.GoId = goid
 	//user.UpdatedAt ==>会自动更新为time.Now
 
 	user.ID = 0
 	db := conn.DB.Create(&user)
+	db.Close()
 	if db.Error != nil {
-		t.Error(db.Error)
+		fmt.Println("--------error----")
+
 	}
 
-	var flo float64 = 20.23
-	var dept model.Department
-	dept.Address = ""
-	dept.CreatedAt = time.Now()
-	dept.DeptName = "企业IT"
-	dept.NullFloat = sql.NullFloat64{Float64: flo, Valid: true}
-	dept.Tel = "18011112222"
-	//dept.UpdatedAt
-
-	db2 := conn.DB.Create(&dept)
-	if db2.Error != nil {
-		t.Error(db2.Error)
-	}
 }

@@ -1,10 +1,13 @@
 package conn
 
 import (
+	"bytes"
 	"fmt"
 	"gorm_demo/config"
 	"log"
 	"os"
+	"runtime"
+	"strconv"
 
 	"github.com/jinzhu/gorm"
 )
@@ -23,4 +26,14 @@ func InitDB() {
 
 	DB.LogMode(true)
 	DB.SetLogger(log.New(os.Stdout, "\r\n", 0))
+}
+
+//GetGID 获取协程ID，用于并发记录
+func GetGID() uint64 {
+	b := make([]byte, 64)
+	b = b[:runtime.Stack(b, false)]
+	b = bytes.TrimPrefix(b, []byte("goroutine "))
+	b = b[:bytes.IndexByte(b, ' ')]
+	n, _ := strconv.ParseUint(string(b), 10, 64)
+	return n
 }

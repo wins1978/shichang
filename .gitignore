@@ -20,3 +20,4 @@ github.com
 /src/gorm_demo/config/db_settings.go
 /bin
 /mod-demo/conf/db_setting.go
+db_config.go

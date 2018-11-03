@@ -21,3 +21,4 @@ github.com
 /bin
 /mod-demo/conf/db_setting.go
 db_config.go
+/src/gorm_demo/config/db_config.go

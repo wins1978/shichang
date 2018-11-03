@@ -32,7 +32,7 @@ func InsertOne(idx int) {
 	db.Close()
 	if db.Error != nil {
 		fmt.Println("--------error----")
-
+		fmt.
 	}
 
 }

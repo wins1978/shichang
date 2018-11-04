@@ -7,6 +7,8 @@ github.com/cosiner/argv v0.0.0-20170225145430-13bacc38a0a5/go.mod h1:p/NrK5tF6IC
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/derekparker/delve v1.1.0 h1:icd65nMp7s2HiLz6y/6RCVXBdoED3xxYLwX09EMaRCc=
 github.com/derekparker/delve v1.1.0/go.mod h1:pMSZMfp0Nhbm8qdZJkuE/yPGOkLpGXLS1I4poXQpuJU=
+github.com/go-sql-driver/mysql v1.4.0 h1:7LxgVwFb2hIQtMm87NdgAVfXjnt4OePseqT1tKx+opk=
+github.com/go-sql-driver/mysql v1.4.0/go.mod h1:zAC/RDZ24gD3HViQzih4MyKcchzm+sOG5ZlKdlhCg5w=
 github.com/golang/arch v0.0.0-20180920145803-b19384d3c130 h1:gH8PWB23RLzipP7JbJLLm8/O+rPsCVyVE1I4KhT1GhU=
 github.com/golang/arch v0.0.0-20180920145803-b19384d3c130/go.mod h1:Q40cfEvhPpWRR1PojDu63fm1MsYsb86QWBFdO0syDk0=
 github.com/golang/crypto v0.0.0-20180904163835-0709b304e793/go.mod h1:uZvAcrsnNaCxlh1HorK5dUQHGmEKPh2H/Rl1kehswPo=
@@ -23,6 +25,10 @@ github.com/golang/tools v0.0.0-20181102223251-96e9e165b75e h1:zUmhvVRvAKgzkqwfUB
 github.com/golang/tools v0.0.0-20181102223251-96e9e165b75e/go.mod h1:BZR6KJOI/IQ5FlSQroxL7yevEMRCz1dARTXHD9s4mHE=
 github.com/inconshreveable/mousetrap v1.0.0 h1:Z8tu5sraLXCXIcARxBp/8cbvlwVa7Z1NHg9XEKhtSvM=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
+github.com/jinzhu/gorm v1.9.1 h1:lDSDtsCt5AGGSKTs8AHlSDbbgif4G4+CKJ8ETBDVHTA=
+github.com/jinzhu/gorm v1.9.1/go.mod h1:Vla75njaFJ8clLU1W44h34PjIkijhjHIYnZxMqCdxqo=
+github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a h1:eeaG9XMUvRBYXJi4pg1ZKM7nxc5AfXfojeLLW7O5J3k=
+github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1 h1:mweAR1A6xJ3oS2pRaGiHgQ4OO8tzTaLawm8vnODuwDk=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
 github.com/lukehoban/go-find-references v0.0.0-20150918174914-42505ef666d1 h1:F7r7JiLNObE2d4z82V3/cUfW5alV6YY89LQtK0qcUQc=

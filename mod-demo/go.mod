@@ -3,9 +3,12 @@ module g.demo
 require (
 	github.com/cosiner/argv v0.0.0-20170225145430-13bacc38a0a5 // indirect
 	github.com/derekparker/delve v1.1.0 // indirect
+	github.com/go-sql-driver/mysql v1.4.0
 	github.com/golang/lint v0.0.0-20181026193005-c67002cb31c3 // indirect
 	github.com/golang/net v0.0.0-20181102091132-c10e9556a7bc // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
+	github.com/jinzhu/gorm v1.9.1
+	github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a // indirect
 	github.com/lukehoban/go-find-references v0.0.0-20150918174914-42505ef666d1 // indirect
 	github.com/lukehoban/go-outline v0.0.0-20161011150102-e78556874252 // indirect
 	github.com/lukehoban/ident v0.0.0-20161021214352-ec6acfba39eb // indirect

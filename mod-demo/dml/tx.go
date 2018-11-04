@@ -44,5 +44,17 @@ func TxInsertDept(tx *gorm.DB) {
 	if q.Error != nil {
         fmt.Println("-------------------TxInsertDept:",q.Error)
         tx.Rollback()
-	}
+    }
+    
+    go TxInsertUser(tx)
+
+
+    time.Sleep(time.Duration(3) * time.Second)
+    if(tx.Error != nil) {
+		fmt.Println("---------rollback")
+		tx.Rollback()
+		}else{
+			fmt.Println("---------commit")
+			tx.Commit()
+		}
 }

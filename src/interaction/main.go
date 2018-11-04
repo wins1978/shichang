@@ -1,13 +1,11 @@
 package main
 
 import (
+	_ "interaction/routers"
+
 	"github.com/astaxie/beego"
-	_ "go_web/routers"
 	//"go_web/common"
 )
-
-
-
 
 func init() {
 	// init db env

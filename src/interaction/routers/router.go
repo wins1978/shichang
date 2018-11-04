@@ -1,9 +1,10 @@
 package routers
 
 import (
-	"github.com/astaxie/beego/plugins/cors"
-	"go_web/controllers"
+	"interaction/controllers"
+
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/plugins/cors"
 )
 
 func init() {
@@ -14,10 +15,9 @@ func init() {
 		ExposeHeaders:    []string{"Content-Length", "Access-Control-Allow-Origin"},
 		AllowCredentials: true,
 	}))
-	
+
 	beego.Router("/", &controllers.MainController{})
 	beego.AutoRouter(&controllers.LoginController{})
 	beego.AutoRouter(&controllers.UploadController{})
 	beego.AutoRouter(&controllers.TempController{})
 }
-

@@ -1,4 +1,5 @@
 package controllers
+
 /*
 1) Upload Exc file to server path
 2) Read from Exc plugin
@@ -16,32 +17,34 @@ EXCEL======
 */
 
 import (
+	"interaction/business/excel_mgr"
+	"interaction/config"
+
 	"github.com/astaxie/beego"
-	"go_web/config"
-	"go_web/business/excel_mgr"
 )
 
 type UploadController struct {
 	beego.Controller
 }
+
 //https://www.cnblogs.com/goloving/p/8967865.html 上传文件示例
 //http://localhost:8080/Upload/UpFile
 func (this *UploadController) UpFile() {
-	f,h,_ := this.GetFile("file")
+	f, h, _ := this.GetFile("file")
 	defer f.Close()
 
-	path := config.UPLOAD_FOLDER +h.Filename
-	this.SaveToFile("file",path)
+	path := config.UPLOAD_FOLDER + h.Filename
+	this.SaveToFile("file", path)
 
 	var colMap = initClumnMap()
 
 	xlsImpl := new(excel_mgr.XlsReader)
 	xlsImpl.InitWorkBook(path)
 	datas := xlsImpl.ReadData(colMap)
-	
+
 	this.Data["datas"] = datas
 	this.Data["msg"] = ""
-	this.Ctx.Output.JSON(this.Data["datas"],false,false)
+	this.Ctx.Output.JSON(this.Data["datas"], false, false)
 }
 
 //定义表头字段对于关系
@@ -49,7 +52,6 @@ func initClumnMap() map[string]string {
 	var colMap map[string]string
 	colMap = make(map[string]string)
 
-	
 	colMap["首次称重操作员"] = "Date"
 	colMap["磅单编号"] = "NumberFlag"
 	colMap["首次称重日期"] = "Date"
@@ -62,4 +64,4 @@ func initClumnMap() map[string]string {
 	colMap["收货单位"] = "TakeDept"
 	colMap["发货单位"] = "SendOutDept"
 	return colMap
-} 
+}

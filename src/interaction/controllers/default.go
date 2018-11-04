@@ -1,8 +1,9 @@
 package controllers
 
 import (
+	"interaction/temp"
+
 	"github.com/astaxie/beego"
-	"go_web/temp"
 )
 
 type MainController struct {
@@ -15,9 +16,8 @@ func (c *MainController) Get() {
 	//c.TplName = "index.tpl"
 	temp.GetFirstRow()
 
-	c.Ctx.Output.JSON("",false,false)
+	c.Ctx.Output.JSON("", false, false)
 }
-
 
 func (c *MainController) GetAll() {
 	//c.Data["Website"] = "beego12.me"

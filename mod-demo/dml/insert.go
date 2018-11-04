@@ -8,6 +8,7 @@ import (
     "fmt"
     "g.demo/model"
     "g.demo/db"
+    "math/rand"
 )
 
 func InsertUser(idx int, deptId int64) {
@@ -26,7 +27,7 @@ func InsertUser(idx int, deptId int64) {
     fmt.Println(idx)
     user.ID = 0
     
-    //time.Sleep(time.Duration(5) * time.Second)
+    time.Sleep(time.Duration(rand.Intn(30)) * time.Second)
     da :=db.InitDB()
 
 	q := da.Create(&user)

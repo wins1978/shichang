@@ -1,6 +1,7 @@
 package main
 
 import (
+	"interaction/common"
 	_ "interaction/routers"
 
 	"github.com/astaxie/beego"
@@ -9,7 +10,7 @@ import (
 
 func init() {
 	// init db env
-	//common.InitDB()
+	common.InitDB()
 }
 
 func main() {

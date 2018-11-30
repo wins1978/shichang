@@ -1,3 +1,0 @@
-MYSQL本身需要修改最大连接数
-set GLOBAL max_connections=2000;
-set GLOBAL max_user_connections=1500;

@@ -1,0 +1,8 @@
+package: .
+import:
+- package: github.com/extrame/xls
+  version: v0.0.1
+- package: github.com/gin-gonic/gin
+  version: v1.3.0
+- package: github.com/go-yaml/yaml
+  version: v2.2.2

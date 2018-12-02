@@ -1,0 +1,16 @@
+# 附件保存路径
+UploadFolder: H://shichang//upload//
+LogFolder: H://log//
+# 导入文件和数据库表对于字段
+ColumnMap:
+  Date: "首次称重操作员"
+  NumberFlag: "磅单编号"
+  Date: "首次称重日期"
+  Time: "毛重时间"
+  CarNumber: "车号"
+  ShopNumber: "货物名称"
+  GrossWeight: "毛重"
+  TareWeight: "皮重"
+  NetWeight: "净重"
+  TakeDept: "收货单位"
+  SendOutDept: "发货单位"

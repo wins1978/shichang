@@ -1,0 +1,6 @@
+Dialect: mysql
+DbName: "shichang"
+Host: "localhost"
+User: "root"
+Password: "Cosfcoco00"
+Port: 3306

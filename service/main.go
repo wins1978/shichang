@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
+
+	"sc.service/controler"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,29 +34,16 @@ func setupRouter() *gin.Engine {
 	// Disable Console Color
 	gin.DisableConsoleColor()
 	r := gin.Default()
-	/*
-		r.Use(cors.New(cors.Config{
-			AllowOriginFunc:  func(origin string) bool { return true },
-			AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"},
-			AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type"},
-			AllowCredentials: true,
-			MaxAge:           12 * time.Hour,
-		}))*/
+
+	// 跨域拦截设置
 	r.Use(Cors())
+
+	// 导入Excel数据
+	r.POST("/upload", controler.ImportExcel)
 
 	// Ping test
 	r.GET("/ping", func(c *gin.Context) {
-		fmt.Println("------------2")
 		c.String(http.StatusOK, "pong")
-	})
-
-	r.POST("/upload", func(context *gin.Context) {
-		context.JSON(http.StatusOK, "OPTIONS")
-	})
-
-	r.POST("/pp", func(c *gin.Context) {
-		fmt.Println("------------2")
-		c.String(http.StatusOK, "poppng")
 	})
 
 	// Get user value
